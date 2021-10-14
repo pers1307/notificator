@@ -1,0 +1,10 @@
+POST http://localhost:8888/add-send-message/
+Content-Type: application/x-www-form-urlencoded
+Accept: application/json
+
+userId=&groupId=1&channels[email]=default&params="{\"text\" : \"Привет\"}"
+
+<> 2021-10-14T214026.200.html
+<> 2021-10-14T214009.200.html
+<> 2021-10-14T213947.200.html
+<> 2021-10-14T213747.200.html

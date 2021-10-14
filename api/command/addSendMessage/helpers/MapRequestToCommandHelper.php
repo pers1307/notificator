@@ -6,6 +6,7 @@ use app\api\command\addSendMessage\Command;
 use app\api\command\addSendMessage\exceptions\NotChannelException;
 use app\api\command\addSendMessage\exceptions\NotDestinationException;
 use app\api\command\addSendMessage\exceptions\ParamsJsonNotValidException;
+use cebe\markdown\inline\StrikeoutTrait;
 use yii\web\Request;
 
 class MapRequestToCommandHelper
@@ -30,8 +31,21 @@ class MapRequestToCommandHelper
 
             if ($result === null)
                 throw new ParamsJsonNotValidException("У сообщения не валидный json в параметрах");
+
+            $params['params'] = MapRequestToCommandHelper::convertJson($params['params']);
         }
 
         return new Command($params['userId'], $params['groupId'], $params['channels'], $params['params']);
+    }
+
+    /**
+     * Какая то дичь с экранированием json при использования отправок запроса
+     */
+    private static function convertJson($json)
+    {
+        $params = json_decode($json, true);
+        $params = json_decode($params, true);
+
+        return json_encode($params);
     }
 }

@@ -39,6 +39,4 @@ class Command
         $this->channels = $channels;
         $this->params = $params;
     }
-
-
 }
