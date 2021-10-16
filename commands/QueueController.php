@@ -2,6 +2,12 @@
 
 namespace app\commands;
 
+use app\notifications\command\send\entities\Queue;
+use app\notifications\command\send\exceptions\QueueTypeIsNotMessageException;
+use app\notifications\command\send\exceptions\RenderNotFoundException;
+use app\notifications\command\send\exceptions\SenderNotFoundException;
+use app\notifications\command\send\Handler;
+use Exception;
 use yii\console\Controller;
 use yii\console\ExitCode;
 
@@ -9,17 +15,20 @@ class QueueController extends Controller
 {
     public function actionIndex()
     {
-        /**
-         * извлечь
-         */
+        try {
+            $queue = Queue::findOne(['status' => 0]);
 
-        /**
-         * замапить
-         */
+            (new Handler())->handle($queue);
 
-        /**
-         * обработать
-         */
+            // Поставим статус обработки
+            //$queue->status = 1;
+            //$queue->save();
+        } catch (QueueTypeIsNotMessageException $exception) {
+        } catch (RenderNotFoundException $exception) {
+        } catch (SenderNotFoundException $exception) {
+        } catch (Exception $exception) {
+
+        }
 
         return ExitCode::OK;
     }
