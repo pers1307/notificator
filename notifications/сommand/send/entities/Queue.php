@@ -1,6 +1,6 @@
 <?php
 
-namespace app\api\command\addSendMessage\entities;
+namespace app\notifications\command\send\entities;
 
 use Yii;
 

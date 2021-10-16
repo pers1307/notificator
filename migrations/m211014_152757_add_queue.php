@@ -26,6 +26,10 @@ class m211014_152757_add_queue extends Migration
      */
     public function safeDown()
     {
+        /**
+         * Не будем тратить время)
+         */
+
         echo "m211014_152757_add_queue cannot be reverted.\n";
 
         return false;
