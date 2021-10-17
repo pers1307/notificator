@@ -12,7 +12,7 @@ class MapQueueItemToCommandHelper
 
     public static function map(Queue $queue)
     {
-        if ($queue !== MapQueueItemToCommandHelper::$TYPE)
+        if ($queue->type !== MapQueueItemToCommandHelper::$TYPE)
             throw new QueueTypeIsNotMessageException("Элемент очереди имеет неправильный тип");
 
         $params = json_decode($queue->params, true);
@@ -21,7 +21,20 @@ class MapQueueItemToCommandHelper
             $params['userId'],
             $params['groupId'],
             $params['channels'],
-            $params['params']
+            self::clearParam($params)
         );
+    }
+
+    /**
+     * @param array $params
+     * @return false|string
+     */
+    private static function clearParam(array $params)
+    {
+        unset($params['userId']);
+        unset($params['groupId']);
+        unset($params['channels']);
+
+        return json_encode($params);
     }
 }

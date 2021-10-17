@@ -24,8 +24,11 @@ class EmailRender extends AbstractRender
 
     private function render(EmailTemplate $emailTemplate, array $params)
     {
-        extract($params, EXTR_PREFIX_SAME, "same");
+        $result = $emailTemplate->templateText;
+        foreach ($params as $paramName => $paramValue) {
+            $result = str_replace("{" . $paramName . "}", $paramValue, $result);
+        }
 
-        return $emailTemplate->templateText;
+        return $result;
     }
 }

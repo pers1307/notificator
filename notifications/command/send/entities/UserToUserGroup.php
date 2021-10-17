@@ -3,6 +3,7 @@
 namespace app\notifications\command\send\entities;
 
 use Yii;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "usertousergroup".
@@ -14,7 +15,7 @@ use Yii;
  * @property User $user
  * @property UserGroup $userGroup
  */
-class UserToUserGroup extends \yii\db\ActiveRecord
+class UserToUserGroup extends ActiveRecord
 {
     /**
      * {@inheritdoc}

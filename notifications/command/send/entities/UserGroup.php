@@ -3,6 +3,7 @@
 namespace app\notifications\command\send\entities;
 
 use Yii;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "usergroup".
@@ -12,7 +13,7 @@ use Yii;
  *
  * @property UserToUserGroup[] $usertousergroups
  */
-class UserGroup extends \yii\db\ActiveRecord
+class UserGroup extends ActiveRecord
 {
     /**
      * {@inheritdoc}
@@ -52,5 +53,18 @@ class UserGroup extends \yii\db\ActiveRecord
     public function getUserToUserGroups()
     {
         return $this->hasMany(UserToUserGroup::className(), ['userGroupId' => 'id']);
+    }
+
+    /**
+     * @return array
+     */
+    public function getUsers()
+    {
+        return $this
+            ->getUserToUserGroups()
+            ->join('JOIN', 'user', 'userId = user.id')
+            ->select('user.*')
+            ->asArray()
+            ->all();
     }
 }

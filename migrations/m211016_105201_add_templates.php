@@ -34,7 +34,7 @@ class m211016_105201_add_templates extends Migration
         $this->insert('EmailTemplate', [
             'id' => 1,
             'name' => "welcome",
-            'templateText' => "Привет, {userName}! Добро пожаловать в наш сервис."
+            'templateText' => "Привет! Добро пожаловать в наш сервис. {text}"
         ]);
     }
 

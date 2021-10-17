@@ -2,7 +2,9 @@
 
 namespace app\commands;
 
+
 use app\notifications\command\send\entities\Queue;
+use app\notifications\command\send\exceptions\NotEmailsForRecieveException;
 use app\notifications\command\send\exceptions\QueueTypeIsNotMessageException;
 use app\notifications\command\send\exceptions\RenderNotFoundException;
 use app\notifications\command\send\exceptions\SenderNotFoundException;
@@ -24,10 +26,15 @@ class QueueController extends Controller
             //$queue->status = 1;
             //$queue->save();
         } catch (QueueTypeIsNotMessageException $exception) {
+            echo $exception->getMessage() . "\n";
         } catch (RenderNotFoundException $exception) {
+            echo $exception->getMessage() . "\n";
         } catch (SenderNotFoundException $exception) {
+            echo $exception->getMessage() . "\n";
+        } catch (NotEmailsForRecieveException $exception) {
+            echo $exception->getMessage() . "\n";
         } catch (Exception $exception) {
-
+            echo $exception->getMessage() . "\n";
         }
 
         return ExitCode::OK;

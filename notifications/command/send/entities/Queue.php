@@ -3,6 +3,7 @@
 namespace app\notifications\command\send\entities;
 
 use Yii;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "queue".
@@ -12,21 +13,8 @@ use Yii;
  * @property string|null $params
  * @property int|null $status
  */
-class Queue extends \yii\db\ActiveRecord
+class Queue extends ActiveRecord
 {
-    /**
-     * Queue constructor.
-     * @param string $type
-     * @param string|null $params
-     * @param int|null $status
-     */
-    public function __construct($type, $params, $status)
-    {
-        $this->type = $type;
-        $this->params = $params;
-        $this->status = $status;
-    }
-
     /**
      * {@inheritdoc}
      */
